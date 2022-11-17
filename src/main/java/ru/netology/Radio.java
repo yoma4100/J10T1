@@ -1,8 +1,9 @@
 package ru.netology;
 
 public class Radio {
-    int currentVolume;
-    int currentStation;
+    private int currentVolume;
+
+    private int currentStation;
 
     public int setCurrentStation(int newStation) {
         if ((newStation < 0) || (newStation > 9)) {
