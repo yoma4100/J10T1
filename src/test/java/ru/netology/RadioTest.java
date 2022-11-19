@@ -17,6 +17,15 @@ public class RadioTest {
     }
 
     @ParameterizedTest
+    @CsvFileSource(resources = "/shouldSetStationWithNumberOfStation.csv")
+    public void shouldSetStationWithNumberOfStation(int numberOfStation, int newStation, int expected) {
+        Radio service = new Radio(numberOfStation);
+        int actual = service.setCurrentStation(newStation);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
     @CsvFileSource(resources = "/shouldSwitchNextStation.csv")
     public void shouldSwitchNextStation(int newStation, int expected) {
         Radio service = new Radio();
@@ -31,9 +40,36 @@ public class RadioTest {
     }
 
     @ParameterizedTest
+    @CsvFileSource(resources = "/shouldSwitchNextStationWithNumberOfStation.csv")
+    public void shouldSwitchNextStationWithNumberOfStation(int numberOfStation,int newStation, int expected) {
+        Radio service = new Radio(numberOfStation);
+
+        int setCurrentStation = service.setCurrentStation(newStation);
+
+        service.nextStation();
+
+        int actual = service.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
     @CsvFileSource(resources = "/shouldSwitchPreviousStation.csv")
     public void shouldSwitchPreviousStation(int newStation, int expected) {
         Radio service = new Radio();
+        int setCurrentStation = service.setCurrentStation(newStation);
+
+        service.previousStation();
+
+        int actual = service.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/shouldSwitchPreviousStationWithNumberOfStation.scv")
+    public void shouldSwitchPreviousStationWithNumberOfStation(int numberOfStation,int newStation, int expected) {
+        Radio service = new Radio(numberOfStation);
         int setCurrentStation = service.setCurrentStation(newStation);
 
         service.previousStation();
