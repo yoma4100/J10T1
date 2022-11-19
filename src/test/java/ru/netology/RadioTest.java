@@ -6,28 +6,18 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class RadioTest {
 
+
     @ParameterizedTest
-    @CsvFileSource(resources = "/shouldSetStationSources.csv")
+    @CsvFileSource(resources = "/shouldSetStation.csv")
     public void shouldSetStation(int newStation, int expected) {
         Radio service = new Radio();
-
         int actual = service.setCurrentStation(newStation);
 
         Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/shouldEqualNullSources.csv")
-    public void shouldEqualNullSources(int newStation, int expected) {
-        Radio service = new Radio();
-
-        int actual = service.setCurrentStation(newStation);
-
-        Assertions.assertEquals(actual, expected);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/shouldIncreaseStation.csv")
+    @CsvFileSource(resources = "/shouldSwitchNextStation.csv")
     public void shouldSwitchNextStation(int newStation, int expected) {
         Radio service = new Radio();
 
@@ -37,21 +27,20 @@ public class RadioTest {
 
         int actual = service.getCurrentStation();
 
-        Assertions.assertEquals(actual, expected);
+        Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/shouldDecreaseStation.cvs")
+    @CsvFileSource(resources = "/shouldSwitchPreviousStation.csv")
     public void shouldSwitchPreviousStation(int newStation, int expected) {
         Radio service = new Radio();
-
         int setCurrentStation = service.setCurrentStation(newStation);
 
         service.previousStation();
 
         int actual = service.getCurrentStation();
 
-        Assertions.assertEquals(actual, expected);
+        Assertions.assertEquals(expected, actual);
     }
 
     @ParameterizedTest
